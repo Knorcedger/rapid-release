@@ -36,6 +36,9 @@ const getCurrentBranch = async () => {
 const run = async () => {
   // get current branch name
   const currentBranch = await getCurrentBranch();
+  if (currentBranch.substr(0, 3).toLowerCase() !== 'dev') {
+    throw new Error('We are not in develop branch');
+  }
   // console.log('currentBranch', currentBranch);
 
   // tests
