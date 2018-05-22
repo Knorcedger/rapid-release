@@ -6,8 +6,9 @@ const exec = async command => {
 
   try {
     result = await execute(command);
-  } catch(error) {
-    console.error(`Error executing: ${command}`, error)
+  } catch (error) {
+    console.error(`Error executing: ${command}`, error);
+    throw new Error(`Error executing: ${command}`);
   }
 
   return result;

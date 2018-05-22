@@ -1,4 +1,3 @@
-// npm test && npm version patch && git push && git push --follow-tags && git checkout master && git pull && git merge develop && git push && git checkout develop
 const program = require('commander');
 const {version} = require('./package.json');
 const exec = require('./exec');
@@ -12,9 +11,6 @@ program
   .arguments('<cmd>')
   .action(cmd => releaseVersion = cmd)
   .option('-s, --skip-tests', 'Skip tests')
-  .option('-P, --pineapple', 'Add pineapple')
-  .option('-b, --bbq-sauce', 'Add bbq sauce')
-  .option('-c, --cheese [type]', 'Add the specified type of cheese [marble]', 'marble')
   .parse(process.argv);
 
 const versionError = validateVersion(releaseVersion);
@@ -30,13 +26,12 @@ const getCurrentBranch = async () => {
   try {
     name = await exec('git rev-parse --abbrev-ref HEAD');
     name = name.stdout.replace('\n', '');
-  } catch(error) {
+  } catch (error) {
     throw new Error('Are we in a git repo?');
   }
 
   return name;
-}
-
+};
 
 const run = async () => {
   // get current branch name
@@ -47,14 +42,14 @@ const run = async () => {
   if (program.skipTests) {
     console.log('Skipping tests!');
   } else {
-    await exec(`npm test`);
+    await exec('npm test');
   }
 
   // npm version
   await exec(`npm version ${releaseVersion}`);
 
   // push
-  await exec(`git push`);
+  await exec('git push');
 
   // push tags
   await exec('git push --follow-tags');
@@ -65,14 +60,16 @@ const run = async () => {
   // pull master
   await exec('git pull');
 
-  // merge develop in master
-  await exec('git merge develop');
+  // merge currentBranch in master
+  await exec(`git merge ${currentBranch}`);
 
   // push master
   await exec('git push');
 
-  // checkout to develop
-  await exec('git checkout develop');
+  // checkout to currentBranch
+  await exec(`git checkout ${currentBranch}`);
+
+  console.log('Done! Check above for errors.');
 };
 
 run();
