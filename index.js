@@ -36,6 +36,10 @@ const getCurrentBranch = async () => {
 const run = async () => {
   // get current branch name
   const currentBranch = await getCurrentBranch();
+  if (currentBranch.substr(0, 3).toLowerCase() !== 'dev') {
+    console.log('Abort: We are not in develop branch');
+    throw new Error('Abort: We are not in develop branch');
+  }
   // console.log('currentBranch', currentBranch);
 
   // tests
@@ -76,9 +80,9 @@ run();
 
 // catch any uncaught exceptions
 process.on('uncaughtException', err => {
-  console.error('Problem: uncaughtException', err);
+  // console.error('Problem: uncaughtException', err);
 });
 
 process.on('unhandledRejection', (reason, p) => {
-  console.error('Problem: Unhandled Rejection at: Promise', p, 'reason:', reason);
+  // console.error('Problem: Unhandled Rejection at: Promise', p, 'reason:', reason);
 });
