@@ -1,0 +1,30 @@
+{
+  extends: ['airbnb-base'],
+  rules: {
+    'arrow-parens': ['error', 'as-needed'],
+    'comma-dangle': ['error', 'never'],
+    'import/extensions': ['error', 'never'],
+    'max-len': ['error', 120],
+    'no-return-assign': 'off',
+    'object-curly-spacing': ['error', 'never'],
+    'prefer-destructuring': 'off'
+  },
+  parserOptions: {
+    ecmaVersion: 9,
+    sourceType: 'module'
+  },
+  env: {
+    node: true,
+    es6: true
+  },
+  'settings': {
+    'import/resolver': {
+      'node': {
+        'extensions': [
+          '.js',
+          '.mjs'
+        ]
+      }
+    }
+  }
+}
