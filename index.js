@@ -79,10 +79,10 @@ const run = async () => {
 run();
 
 // catch any uncaught exceptions
-process.on('uncaughtException', err => {
+process.on('uncaughtException', () => {
   // console.error('Problem: uncaughtException', err);
 });
 
-process.on('unhandledRejection', (reason, p) => {
+process.on('unhandledRejection', () => {
   // console.error('Problem: Unhandled Rejection at: Promise', p, 'reason:', reason);
 });
