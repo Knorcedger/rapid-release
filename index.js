@@ -11,6 +11,7 @@ program
   .arguments('<cmd>')
   .action(cmd => releaseVersion = cmd)
   .option('-s, --skip-tests', 'Skip tests')
+  .option('-p, --npm-publish', 'npm publish')
   .parse(process.argv);
 
 const versionError = validateVersion(releaseVersion);
@@ -69,6 +70,12 @@ const run = async () => {
 
   // push master
   await exec('git push');
+
+  // npm publish
+  if (program.npmPublish) {
+    console.log('Publishing on npm!');
+    await exec('npm publish');
+  }
 
   // checkout to currentBranch
   await exec(`git checkout ${currentBranch}`);
