@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const program = require('commander');
 const {version} = require('./package.json');
 const exec = require('./exec');
@@ -49,6 +51,9 @@ const run = async () => {
   } else {
     await exec('npm test');
   }
+
+  // pull first
+  await exec('git pull');
 
   // npm version
   await exec(`npm version ${releaseVersion}`);
