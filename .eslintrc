@@ -5,6 +5,7 @@
     'comma-dangle': ['error', 'never'],
     'import/extensions': ['error', 'never'],
     'max-len': ['error', 120],
+    'no-console': 'off',
     'no-return-assign': 'off',
     'object-curly-spacing': ['error', 'never'],
     'prefer-destructuring': 'off'

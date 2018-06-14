@@ -43,7 +43,6 @@ const run = async () => {
     console.log('Abort: We are not in develop branch');
     throw new Error('Abort: We are not in develop branch');
   }
-  // console.log('currentBranch', currentBranch);
 
   // tests
   if (program.skipTests) {
