@@ -1,7 +1,7 @@
 {
   "name": "rapid-release",
   "version": "1.0.12",
-  "description": "",
+  "description": "Helps automate the required steps to create a new release",
   "main": "index.js",
   "scripts": {
     "eslint": "eslint *.js",
@@ -11,6 +11,7 @@
     "type": "git",
     "url": "https://github.com/Knorcedger/rapid-release"
   },
+  "keywords": ["release", "release-automation", "npm-publish", "github-releases"],
   "author": "Achilleas Tsoumitas",
   "license": "ISC",
   "dependencies": {
